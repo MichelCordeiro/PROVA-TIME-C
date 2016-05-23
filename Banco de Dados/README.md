@@ -4,10 +4,10 @@
 
 * Informações do Banco de Dados Online. 
 
-**Banco de Dados: ** ``u705680837_ceuma``
-**host: ** ``mysql.hostinger.com.br``
-**Usuario: ** ``u705680837_root``
-**Senha: ** ``zdoy8LtSU3Df8``
+*Banco de Dados: * ``u705680837_ceuma``
+*host: * ``mysql.hostinger.com.br``
+*Usuario: * ``u705680837_root``
+*Senha: * ``zdoy8LtSU3Df8``
 
 * Não se preocupem com o “Created” e “Updated” pois esses colunas serão preenchidas automaticamente. 
 
