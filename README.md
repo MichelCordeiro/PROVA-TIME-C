@@ -1,4 +1,4 @@
-# Link da regra de negocio detalhada. 
+# Link com as regras de negócio detalhadas. 
 https://docs.google.com/document/d/1L24wts7yvxtHkQriM0ueklAuiCw-kc02BiUI1wWXUuI/edit?usp=sharing
 
 
