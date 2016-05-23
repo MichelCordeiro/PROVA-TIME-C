@@ -2,7 +2,12 @@
 
 > ## Informações do Banco de Dados
 
-* Ainda hoje irei colocar as informações do servidor para acessar o banco de dados online.
+* Informações do Banco de Dados Online. 
+
+**Banco de Dados: ** ``u705680837_ceuma``
+**host: ** ``mysql.hostinger.com.br``
+**Usuario: ** ``u705680837_root``
+**Senha: ** ``zdoy8LtSU3Df8``
 
 * Não se preocupem com o “Created” e “Updated” pois esses colunas serão preenchidas automaticamente. 
 
