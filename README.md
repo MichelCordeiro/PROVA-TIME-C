@@ -1,3 +1,8 @@
+# Link da regra de negocio detalhada. 
+https://docs.google.com/document/d/1L24wts7yvxtHkQriM0ueklAuiCw-kc02BiUI1wWXUuI/edit?usp=sharing
+
+# Proponho discutirmos essas regras na nossa primeira reunião com toda o time.
+
 # Prova Prática - Hackathon
 
 Vocês deverão apresentar 4 frentes de trabalho para um mesmo produto. Estas serão:
