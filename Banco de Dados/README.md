@@ -1,5 +1,14 @@
 # Prova Prática - Hackathon
 
+> ## Informações do Banco de Dados
+
+* Ainda hoje irei colocar as informações do servidor para acessar o banco de dados online.
+
+* Não se preocupem com o “Created” e “Updated” pois esses colunas serão preenchidas automaticamente. 
+
+* Todas as tabelas tem o ID como chave primaria e AUTO_INCREMENT. 
+
+
 Vocês deverão apresentar 4 frentes de trabalho para um mesmo produto. Estas serão:
 
 > ## Frente VB (deve ser em Visual Basic)
