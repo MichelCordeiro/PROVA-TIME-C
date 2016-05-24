@@ -1,0 +1,14 @@
+' Modelo de Conexao com Banco Mysql
+
+Public cn As ADODB.Connection
+Public ManiBD As ADODB.Recordset
+
+Sub main()
+Set cn = New ADODB.Connection
+cn.ConnectionString = "Driver={Mysql ODBC 3.51 Driver}; Server=localhost;port=3306; database=BDAgenda; user=root; password=; option=3;"
+cn.Open
+If cn.State = adStateOpen Then
+MsgBox "Connectado ao Banco de Dados"
+End If
+frmLogin.Show
+End Sub
