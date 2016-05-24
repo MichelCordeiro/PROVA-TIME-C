@@ -1,0 +1,13 @@
+Private Sub Command1_Click()
+Dim ManiBD As ADODB.Recordset
+Dim strsql As String
+strsql = "select * from tblLogin where usuario = " & "'" & LTrim(txtLogin.Text) & "'" & " and senha= " & "'" & LTrim(txtSenha.Text) & "'"
+Set ManiBD = cn.Execute(strsql)
+If Not ManiBD.EOF Then
+MsgBox "Credenciais Aceitas"
+Unload Me
+TipodeCadastro.Show
+Else
+MsgBox "Credenciais Inválidas!"
+End If
+End Sub
