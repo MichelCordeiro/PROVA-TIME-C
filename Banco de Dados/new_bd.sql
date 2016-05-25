@@ -63,14 +63,13 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bdagenda`.`horarios` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `Data` DATE NOT NULL,
-  `Hora` TIME NOT NULL,
+  `Hora` DATETIME NOT NULL,
   `Status` INT(11) NOT NULL,
   `created` DATETIME NOT NULL,
   `updated` DATETIME NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET = latin1
 
 
 -- -----------------------------------------------------
