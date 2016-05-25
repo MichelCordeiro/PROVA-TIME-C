@@ -18,22 +18,6 @@ import java.util.List;
  */
 public class AgendaDAO {
 
-//    public static boolean tryLogin(Connection con, Aluno aluno) throws SQLException {
-//
-//        String sql = "SELECT * FROM usuario WHERE email = '" + aluno.email + "'and password = '" + aluno.password + "'; ";
-//        //Prepara a instrução SQL
-//        PreparedStatement ps = con.prepareStatement(sql);
-//        //Executa a instrução SQL
-//        ResultSet rs = ps.executeQuery();
-//
-//        while (rs.next()) {
-//            aluno.email = rs.getString("email");
-//            aluno.password = rs.getString("password");
-//
-//            return true;
-//        }
-//        return false;
-//    }
     public static List<Horario> ConsultHour(Connection con) throws SQLException {
         String sql = "SELECT * FROM horarios";
         //Prepara a instrução SQL
@@ -45,11 +29,9 @@ public class AgendaDAO {
 
         while (rs.next()) {
             horarioA = new Horario();
-            horarioA.date = rs.getDate("horario");
-            horarioA.time = rs.getTime("horario");
-            horarios.add(horarioA);
-            
-            
+            horarioA.date = rs.getDate("hora");
+            horarioA.time = rs.getTime("hora");
+            horarios.add(horarioA);              
         }
         return horarios;
     }
