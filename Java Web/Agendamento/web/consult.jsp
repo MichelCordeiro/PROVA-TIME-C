@@ -4,6 +4,8 @@
     Author     : Valéria
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page import="valeria.*"%>
 <%@page import="java.sql.Connection"%>
 
@@ -16,11 +18,38 @@
         <title>Horários</title>
     </head>
     <body>
-        <%
-            Connection con = ConnectionFactory.createConnection();
+
+        <table >
+            <thead>
+                <tr>
+                    <th>Data:</th>
+                    <th>Hora:</th>
+                </tr>
+            </thead>
+            <tbody>
 
 
-        %>
+                <%
+                    Connection con = ConnectionFactory.createConnection();
+                    List<Horario> horarios = new ArrayList<Horario>();
+                    horarios = AgendaDAO.ConsultHour(con);
 
+                    int i = 0;
+
+                    while (i < horarios.size()) {
+                        out.print("<tr>");
+                        out.print("<td>");
+                        out.print(horarios.get(i).date);
+                        out.print("</td>");
+                        out.print("<td>");
+                        out.print(horarios.get(i).time);
+                        out.print("</td>");
+                        out.print("</tr>");
+                        i++;
+                    }
+
+
+                %>
+        </table>
     </body>
 </html>
