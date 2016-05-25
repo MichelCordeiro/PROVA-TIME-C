@@ -1,24 +1,42 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
+<html lang="en">
     <head>
         <title>Login</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Bootstrap core CSS -->
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="bootstrap/signin.css" type="text/css"/>
+
+
+
     </head>
+
     <body>
-        <h1>Sistema de Agendamento</h1>
+        <!-- Static navbar -->
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="index.html">Login</a></li>
+                        <li><a href="cadastro.html">Agenda</a></li>
+                        <li><a href="consultar.html">Sair</a></li>
+                    
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+        
+        
+        <div class="container">
+            <form class="form-signin" action="login.jsp" method="post">  
+                <h2 class="form-signin-heading">Login</h2>
+                
+                <input type="email" id="name" name="email" class="form-control" placeholder="email@example.com" required autofocus/>
+                <input type="password" name="password" class="form-control" placeholder="*******" />
+                <input class="btn btn-lg btn-primary btn-block"  type="submit" value="Entrar"/>
+            </form> 
+        </div>
 
-        <form action="consult.jsp">
-            
-            <input type="submit" value="enter" name="Enter" />
-        </form>
     </body>
-
 </html>
 
 
