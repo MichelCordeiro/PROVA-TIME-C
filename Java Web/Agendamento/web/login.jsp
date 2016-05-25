@@ -18,11 +18,9 @@
             <div class="container">
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.html">Login</a></li>
-                        <li><a href="cadastro.html">Cadastro</a></li>
-                        <li><a href="consultar.html">Consulta</a></li>
-                        <li><a href="ListUsers.jsp">Usuarios</a></li>
+                        <li><a href="index.html">Login</a></li>                        
                         <li><a href="agenda.html">Agenda</a></li>
+                        <li><a href="sair.html">Sair</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -34,18 +32,14 @@
             Connection con = ConnectionFactory.createConnection();
             Aluno aluno = new Aluno(request.getParameter("email"), request.getParameter("password"),
             request.getParameter("id"));
-            out.print(" <ins> Ficha do Aluno </ins>");
+            
             if (AgendaDAO.TryLogin(con, aluno)) {
-                //out.print("<h2> Bem Vindo " + user.name + "</h2>");
-                out.print("<h2> Aluno: " + aluno.password +  "</h2>");
-                //out.print("<h2> Senha: " + user.password + "</h2>");
-                out.print("<h2> Email: " + aluno.email + "</h2>");
+                out.print(" <ins> Ficha do Aluno </ins>");
+                out.print("Aluno: " + aluno.email +  " ");
+                out.print("Email: " + aluno.email + " ");
          
             } else {
-                out.print("Email ou senha incorretos");
-                out.print(aluno.email);
-                out.print(aluno.password);
-
+                out.print("Email ou senha incorretos\n");
             }
 
 

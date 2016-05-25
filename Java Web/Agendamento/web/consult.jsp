@@ -4,6 +4,7 @@
     Author     : Valéria
 --%>
 
+<%@page import="java.sql.Date"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="valeria.*"%>
@@ -24,6 +25,7 @@
                 <tr>
                     <th>Data:</th>
                     <th>Hora:</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -32,7 +34,7 @@
                 <%
                     Connection con = ConnectionFactory.createConnection();
                     List<Horario> horarios = new ArrayList<Horario>();
-                    horarios = AgendaDAO.ConsultHour(con);
+                    horarios = AgendaDAO.ConsultByDate(con,Date.valueOf(request.getParameter("data")));
 
                     int i = 0;
 
@@ -46,9 +48,7 @@
                         out.print("</td>");
                         out.print("</tr>");
                         i++;
-                    }
-
-
+                    }    
                 %>
         </table>
     </body>
