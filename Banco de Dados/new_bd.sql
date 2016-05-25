@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `bdagenda`.`horarios` (
   `updated` DATETIME NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1
+DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `bdagenda`.`alunos_agendados` (`id` INT, `CPF` INT, `
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `bdagenda`.`alunos_agendados`;
 USE `bdagenda`;
-CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `bdagenda`.`alunos_agendados` AS select `a`.`id` AS `id`,`a`.`CPF` AS `CPF`,`a`.`Nome` AS `Nome`,`a`.`Tel` AS `Tel`,`a`.`Senha` AS `Senha`,`a`.`Email` AS `email`,`h`.`Data` AS `Data`,`h`.`Hora` AS `Hora` from ((`bdagenda`.`alunos` `a` left join `bdagenda`.`agendamento` `ag` on((`a`.`id` = `ag`.`alunos_id`))) left join `bdagenda`.`horarios` `h` on((`h`.`id` = `ag`.`horarios_id`))) where (`h`.`Status` = 1);
+CREATE  OR REPLACE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `bdagenda`.`alunos_agendados` AS select `a`.`id` AS `id`,`a`.`CPF` AS `CPF`,`a`.`Nome` AS `Nome`,`a`.`Tel` AS `Tel`,`a`.`Senha` AS `Senha`,`a`.`Email` AS `email`,`h`.`Hora` AS `Hora` from ((`bdagenda`.`alunos` `a` left join `bdagenda`.`agendamento` `ag` on((`a`.`id` = `ag`.`alunos_id`))) left join `bdagenda`.`horarios` `h` on((`h`.`id` = `ag`.`horarios_id`))) where (`h`.`Status` = 1);
 USE `bdagenda`;
 
 DELIMITER $$
