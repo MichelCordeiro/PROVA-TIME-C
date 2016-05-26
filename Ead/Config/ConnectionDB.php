@@ -1,6 +1,6 @@
 <?php
 
-namespace config;
+namespace Config;
 
 /**
  * Classe de conexão com o banco de dados.
@@ -43,14 +43,9 @@ class ConnectionDB {
             return true;
         }
 
-        if ($this->sgdb == "mysql" || $this->sgdb == "") {
+        if ($this->sgdb == "mysql") {
 
             $this->conexao_mysql();
-        }
-
-        if ($this->sgdb == "postgres") {
-
-            $this->conexao_pg();
         }
     }
 
@@ -367,10 +362,6 @@ class ConnectionDB {
         }
     }
 
-    private function insert_pg($request, $table_name) {
-        return pg_copy_from($this->conn, $table_name, $request);
-    }
-
     public function update($request, $table_name, $chavePrimaria = null, $condicao = null, $caseSensitive = false) {
         $this->caseSensitive = $caseSensitive;
 
@@ -385,10 +376,6 @@ class ConnectionDB {
 
             return $this->update_pg($request, $table_name, $condicao);
         }
-    }
-
-    private function update_pg($request, $table_name, $condicao) {
-        return pg_update($this->conn, $table_name, $request, $condicao);
     }
 
     private function generatorQueryinsert($request, $table_name, $chavePrimaria) {
