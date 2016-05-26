@@ -6,13 +6,13 @@
         <title> DEEP SYSTEM </title>
 
         <!-- PRINCIPAL -->
-        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css">
 
         <!-- FONTES E ICONES -->
-        <link rel="stylesheet" href="css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="public/css/font-awesome.min.css" rel="stylesheet">
 
         <!-- O CSS COMPLETO -->
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="public/css/style.css">
 
 
     </head>
@@ -64,9 +64,9 @@
                     </div>
                 </div>
                 <div id="home-row-2" class="row clearfix">
-                    <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="4"><img src="images/s02.png"></div><span>Desktop </span></div>
-                    <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="3"><img src="images/s01.png"></div><span> Mobile</span></div>
-                    <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="5"><img src="images/s03.png"></div><span> Muito + </span></div>
+                    <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="4"><img src="public/images/s02.png"></div><span>Desktop </span></div>
+                    <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="3"><img src="public/images/s01.png"></div><span> Mobile</span></div>
+                    <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="5"><img src="public/images/s03.png"></div><span> Muito + </span></div>
                 </div>
             </div>
         </div>
