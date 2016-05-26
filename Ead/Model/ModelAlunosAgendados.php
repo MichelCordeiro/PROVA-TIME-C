@@ -6,6 +6,8 @@ class ModelAlunosAgendados {
 
     private $cnnObj;
     private $id;
+    private $setor;
+    private $descricao;
     private $hora;
 
     function __construct() {
@@ -16,12 +18,28 @@ class ModelAlunosAgendados {
         return $this->id;
     }
 
-    public function setId($id) {
-        $this->id = $id;
+    public function getSetor() {
+        return $this->setor;
+    }
+
+    public function getDescricao() {
+        return $this->descricao;
     }
 
     public function getHora() {
         return $this->hora;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    public function setSetor($setor) {
+        $this->setor = $setor;
+    }
+
+    public function setDescricao($descricao) {
+        $this->descricao = $descricao;
     }
 
     public function setHora($hora) {
@@ -30,13 +48,22 @@ class ModelAlunosAgendados {
 
     public function selectOne() {
 
-        $sql = "SELECT distinct id, Nome, Email FROM alunos where Email = '$email' and Senha = '$senha';";
+        $id = $this->getId();
+
+        if (!$id)
+            return false;
+
+        $sql = "SELECT * FROM bdagenda.alunos_agendados where id = $id;";
 
         $this->cnnObj->setQuery($sql);
-        $result = $this->cnnObj->execut_query("simplex");
+        $result = $this->cnnObj->execut_query();
 
         if ($result) {
-            $this->setHora($result["Nome"]);
+
+            $this->setDescricao($result["descricao"]);
+            $this->setSetor($result["setor"]);
+            $this->setHora($result["Hora"]);
+
             return true;
         }
         return false;
