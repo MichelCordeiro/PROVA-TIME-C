@@ -116,7 +116,6 @@ CREATE TABLE IF NOT EXISTS `bdagenda`.`agendamento` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `alunos_id` INT(11) NOT NULL,
   `setores_horarios_id` INT NOT NULL,
-  `descricao` TEXT NULL,
   `status` TINYINT(4) NOT NULL DEFAULT '1',
   `created` DATETIME NOT NULL,
   `updated` DATETIME NOT NULL,
@@ -171,7 +170,6 @@ VIEW `alunos_agendados` AS
     SELECT 
         `a`.`id` AS `id`,
         `s`.`nome` AS `setor`,
-        `ag`.`descricao` AS `descricao`,
         `h`.`Hora` AS `Hora`
     FROM
         ((((`alunos` `a`
