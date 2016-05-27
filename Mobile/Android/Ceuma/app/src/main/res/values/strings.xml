@@ -18,6 +18,7 @@
     <string name="dlg_mensagem">Lista de Agendamentos</string>
     <string name="Erro">Vazio</string>
     <string name="ErroWebService">Número não pode ser menor que zero!</string>
+    <string name="title_activity_lista_agendamento">ListaAgendamentoActivity</string>
 
     dlg_titulo
 </resources>

@@ -15,13 +15,6 @@ public class Agendamento implements Serializable {
     private String hora;
     private String setor;
 
-    /*public Agendamento(String aluno, String data, String hora, String setor) {
-        this.aluno = aluno;
-        this.data = data;
-        this.hora = hora;
-        this.setor = setor;
-    }*/
-
     public String getAluno() {
         return aluno;
     }

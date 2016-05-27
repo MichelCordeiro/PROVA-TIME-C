@@ -12,9 +12,6 @@ public class MainActivity extends AppCompatActivity {
 
         WebServiceExecute ws = new WebServiceExecute("Agendamento");
         ws.setId(1);
-        ws.setContext(this);
-        ws.setTitulo("titulo");
-        ws.setMensagem("msg");
         ws.execute();
 
     }

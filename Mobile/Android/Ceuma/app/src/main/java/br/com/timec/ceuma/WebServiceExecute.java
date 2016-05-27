@@ -33,7 +33,7 @@ public class WebServiceExecute extends WebService {
     }
 
     private String genereteUrl() {
-        String url = "http://192.168.1.103/";
+        String url = "http://192.168.1.102/";
 
         if (tipo.equals("login")) {
             url += "ws-login.php?email=" + this.getEmail();
@@ -47,9 +47,9 @@ public class WebServiceExecute extends WebService {
 
     private void getAgendamento(String json) {
 
-        List <Agendamento> agendamentos = new ArrayList<Agendamento>();
+        List<Agendamento> agendamentos = new ArrayList<Agendamento>();
 
-         try {
+        try {
             JSONArray agendmentosJson = new JSONArray(json);
             JSONObject agendmento;
 
@@ -70,6 +70,28 @@ public class WebServiceExecute extends WebService {
         } catch (JSONException e) {
             Log.e("Erro", "Erro no parsing do JSON", e);
         }
+        return;
+    }
+
+    private void getLogin(String json) {
+
+        List<Aluno> alunos = new ArrayList<Aluno>();
+
+        try {
+                JSONObject obj = new JSONObject(json);
+                Aluno objAluno = new Aluno();
+
+                objAluno.setId(obj.getString("Id"));
+                objAluno.setNome(obj.getString("Nome"));
+
+                alunos.add(objAluno);
+
+            this.setAlunos(alunos);
+
+        } catch (JSONException e) {
+            Log.e("Erro", "Erro no parsing do JSON", e);
+        }
+
         return;
     }
 
@@ -103,7 +125,6 @@ public class WebServiceExecute extends WebService {
 
     public void execute() {
 
-        final ProgressDialog dialog = ProgressDialog.show(this.getContext(), this.getTitulo(), this.getMensagem());
         final String url = genereteUrl();
 
         new Thread(new Runnable() {
@@ -114,27 +135,26 @@ public class WebServiceExecute extends WebService {
 
                     HttpClient httpclient = new DefaultHttpClient();
                     HttpGet request = new HttpGet();
-
+//                    dialog = ProgressDialog.show(this, "Aguarde","Fazendo download do JSON");
                     request.setURI(new URI(url));
 
                     HttpResponse response = httpclient.execute(request);
 
                     HttpEntity entity = response.getEntity();
 
-                    if (entity == null) {
+                    InputStream instream = entity.getContent();
+                    String json = getStringFromInputStream(instream);
+                    instream.close();
+
+                    if (json.equals("null")) {
                         throw new Exception(String.valueOf(R.string.ErroWebService));
-
-                    }
-                        InputStream instream = entity.getContent();
-                        String json = getStringFromInputStream(instream);
-                        instream.close();
-
+                    } else if (tipo.equals("login")) {
+                        getLogin(json);
+                    } else {
                         getAgendamento(json);
-
+                    }
                 } catch (Exception e) {
-                    Log.e("Erro", "Falha ao acessar Web service", e);
-                } finally {
-                    dialog.dismiss();
+                    Log.i("Erro", "Falha ao acessar Web service", e);
                 }
             }
         }).start();

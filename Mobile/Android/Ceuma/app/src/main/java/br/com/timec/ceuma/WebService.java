@@ -2,6 +2,7 @@ package br.com.timec.ceuma;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.text.Editable;
 
 import java.util.List;
 
@@ -10,38 +11,12 @@ import java.util.List;
  */
 public class WebService {
 
-    private String titulo;
-    private String mensagem;
-    private Context context;
+
     private Integer id;
     private String email;
     private String senha;
     private List<Agendamento> agendamentos;
-
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getMensagem() {
-        return mensagem;
-    }
-
-    public void setMensagem(String mensagem) {
-        this.mensagem = mensagem;
-    }
-
-    public Context getContext() {
-        return context;
-    }
-
-    public void setContext(Context context) {
-        this.context = context;
-    }
+    private List<Aluno> alunos;
 
     public Integer getId() {
         return id;
@@ -73,5 +48,13 @@ public class WebService {
 
     public void setAgendamentos(List<Agendamento> agendamentos) {
         this.agendamentos = agendamentos;
+    }
+
+    public List<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
     }
 }
