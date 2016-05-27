@@ -20,25 +20,32 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void submit(View view) {
-        tvEmail = (MultiAutoCompleteTextView) findViewById(R.id.email);
-        edSenha = (EditText) findViewById(R.id.password);
+        try {
+            tvEmail = (MultiAutoCompleteTextView) findViewById(R.id.email);
+            edSenha = (EditText) findViewById(R.id.password);
 
-        WebServiceExecute ws = new WebServiceExecute("login");
-        ws.setEmail(tvEmail.getText().toString());
-        ws.setSenha(edSenha.getText().toString());
+            WebServiceExecute ws = new WebServiceExecute("login");
 
-        ws.execute();
+            ws.setEmail(tvEmail.getText().toString());
+            ws.setSenha(edSenha.getText().toString());
 
-        if(!ws.getAlunos().isEmpty()){
-           Aluno aluno = ws.getAlunos().get(0);
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            intent.putExtra("Aluno", aluno);
-            startActivity(intent);
+            ws.setTitulo("Busca no Servidor Remoto");
+            ws.setMensagem("Aguarde...");
+            ws.setContext(this);
+            ws.execute();
 
-        } else{
-            edSenha.setText("");
-            Log.i("Erro no Login", "exibir uma mensagem de erro");
+            if (ws.getId() == null) {
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("id", ws.getId().toString());
+                startActivity(intent);
+            } else {
+                edSenha.setText("");
+                Log.i("ERRO-LOGIN", "Exibir uma mensagem de erro");
+            }
+        } catch (Exception e) {
+            Log.i("ERROR", e.getMessage());
         }
+
 
     }
 }

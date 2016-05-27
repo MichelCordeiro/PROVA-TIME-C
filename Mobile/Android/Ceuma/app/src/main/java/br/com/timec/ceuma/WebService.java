@@ -13,10 +13,12 @@ public class WebService {
 
 
     private Integer id;
+    private Context context;
+    private String titulo;
+    private String mensagem;
     private String email;
     private String senha;
     private List<Agendamento> agendamentos;
-    private List<Aluno> alunos;
 
     public Integer getId() {
         return id;
@@ -24,6 +26,30 @@ public class WebService {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
     }
 
     public String getEmail() {
@@ -48,13 +74,5 @@ public class WebService {
 
     public void setAgendamentos(List<Agendamento> agendamentos) {
         this.agendamentos = agendamentos;
-    }
-
-    public List<Aluno> getAlunos() {
-        return alunos;
-    }
-
-    public void setAlunos(List<Aluno> alunos) {
-        this.alunos = alunos;
     }
 }

@@ -33,7 +33,7 @@ public class WebServiceExecute extends WebService {
     }
 
     private String genereteUrl() {
-        String url = "http://192.168.1.102/";
+        String url = "http://192.168.1.104/";
 
         if (tipo.equals("login")) {
             url += "ws-login.php?email=" + this.getEmail();
@@ -75,18 +75,9 @@ public class WebServiceExecute extends WebService {
 
     private void getLogin(String json) {
 
-        List<Aluno> alunos = new ArrayList<Aluno>();
-
         try {
                 JSONObject obj = new JSONObject(json);
-                Aluno objAluno = new Aluno();
-
-                objAluno.setId(obj.getString("Id"));
-                objAluno.setNome(obj.getString("Nome"));
-
-                alunos.add(objAluno);
-
-            this.setAlunos(alunos);
+                this.setId(obj.getInt("Id"));
 
         } catch (JSONException e) {
             Log.e("Erro", "Erro no parsing do JSON", e);
@@ -126,16 +117,15 @@ public class WebServiceExecute extends WebService {
     public void execute() {
 
         final String url = genereteUrl();
+        final ProgressDialog progress = ProgressDialog.show(this.getContext(), this.getTitulo(), this.getMensagem());
 
         new Thread(new Runnable() {
             @Override
             public void run() {
 
                 try {
-
                     HttpClient httpclient = new DefaultHttpClient();
                     HttpGet request = new HttpGet();
-//                    dialog = ProgressDialog.show(this, "Aguarde","Fazendo download do JSON");
                     request.setURI(new URI(url));
 
                     HttpResponse response = httpclient.execute(request);
@@ -155,6 +145,8 @@ public class WebServiceExecute extends WebService {
                     }
                 } catch (Exception e) {
                     Log.i("Erro", "Falha ao acessar Web service", e);
+                } finally {
+                    progress.dismiss();
                 }
             }
         }).start();
