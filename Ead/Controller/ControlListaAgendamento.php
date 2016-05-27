@@ -29,20 +29,20 @@ class ControlListaAgendamento {
     private function showDataForm() {
 
         if (!$this->objAlunosAgendados->selectOne()) {
-            $this->json['status'] = false;
+            $this->json = null;
             return;
         }
 
-        $this->json['status'] = true;
-
+        $aluno = $this->objAlunosAgendados->getAluno();
+        $data = $this->objAlunosAgendados->getData();
         $hora = $this->objAlunosAgendados->getHora();
-        $descicao = $this->objAlunosAgendados->getDescricao();
         $setor = $this->objAlunosAgendados->getSetor();
 
-        foreach ($hora as $key => $value) {
-            $this->json['data'][$key]["hora"] = $value;
-            $this->json['data'][$key]["descricao"] = $descicao[$key];
-            $this->json['data'][$key]["setor"] = $setor[$key];
+        foreach ($aluno as $key => $value) {
+            $this->json[$key]["Aluno"] = $value;
+            $this->json[$key]["Data"] = $data[$key];
+            $this->json[$key]["Hora"] = $hora[$key];
+            $this->json[$key]["Setor"] = $setor[$key];
         }
 
         return;

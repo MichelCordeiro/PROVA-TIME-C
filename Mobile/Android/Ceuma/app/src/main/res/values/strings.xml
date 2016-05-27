@@ -13,4 +13,11 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="Titulo">Nome da pessoa logada</string>
     <string name="lista">Lista de Agendamentos</string>
+
+    <string name="dlg_titulo">Lista de Agendamentos</string>
+    <string name="dlg_mensagem">Lista de Agendamentos</string>
+    <string name="Erro">Vazio</string>
+    <string name="ErroWebService">Número não pode ser menor que zero!</string>
+
+    dlg_titulo
 </resources>

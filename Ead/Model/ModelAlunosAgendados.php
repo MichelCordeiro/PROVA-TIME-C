@@ -6,8 +6,9 @@ class ModelAlunosAgendados {
 
     private $cnnObj;
     private $id;
+    private $aluno;
     private $setor;
-    private $descricao;
+    private $data;
     private $hora;
 
     function __construct() {
@@ -18,12 +19,16 @@ class ModelAlunosAgendados {
         return $this->id;
     }
 
+    public function getAluno() {
+        return $this->aluno;
+    }
+
     public function getSetor() {
         return $this->setor;
     }
 
-    public function getDescricao() {
-        return $this->descricao;
+    public function getData() {
+        return $this->data;
     }
 
     public function getHora() {
@@ -34,12 +39,16 @@ class ModelAlunosAgendados {
         $this->id = $id;
     }
 
+    public function setAluno($aluno) {
+        $this->aluno = $aluno;
+    }
+
     public function setSetor($setor) {
         $this->setor = $setor;
     }
 
-    public function setDescricao($descricao) {
-        $this->descricao = $descricao;
+    public function setData($data) {
+        $this->data = $data;
     }
 
     public function setHora($hora) {
@@ -59,11 +68,10 @@ class ModelAlunosAgendados {
         $result = $this->cnnObj->execut_query();
 
         if ($result) {
-
-            $this->setDescricao($result["descricao"]);
-            $this->setSetor($result["setor"]);
+            $this->setAluno($result["Aluno"]);
+            $this->setSetor($result["Setor"]);
             $this->setHora($result["Hora"]);
-
+            $this->setData($result["Data"]);
             return true;
         }
         return false;

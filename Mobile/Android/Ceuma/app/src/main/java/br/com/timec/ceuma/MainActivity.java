@@ -10,6 +10,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        WebServiceExecute ws = new WebServiceExecute("Agendamento");
+        ws.setId(1);
+        ws.setContext(this);
+        ws.setTitulo("titulo");
+        ws.setMensagem("msg");
+        ws.execute();
 
     }
 }
