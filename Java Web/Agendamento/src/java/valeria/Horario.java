@@ -17,9 +17,12 @@ public class Horario {
     
     public Date date;
     public Time time;
-    
+    public boolean status;
     public String getDataFormatada() {        
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");        
         return sdf.format(date);        
     }    
+    
+
+
 }

@@ -4,6 +4,7 @@
     Author     : Valéria
 --%>
 
+<%@page import="java.sql.Time"%>
 <%@page import="java.sql.Date"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -48,7 +49,7 @@
                 <td> </td>
                 <td><input type="submit" value="Escolher" name="scolher" /></td>
             </tr>
-           
+
             <tbody>
 
 
@@ -61,27 +62,45 @@
                     Connection con = ConnectionFactory.createConnection();
                     List<Horario> horarios = new ArrayList<Horario>();
                     horarios = AgendaDAO.ConsultByDate(con, Date.valueOf(request.getParameter("data")));
+                    List<Horario> horas = new ArrayList<Horario>();
+                    horas = AgendaDAO.ConsultHour(con, Time.valueOf("s"));
 
                     int i = 0;
 
-                    while (i < horarios.size()) {
+//                    while (i < horarios.size()) {
+//                        out.print("<tr>");
+//                        out.print("<td>");
+//                        out.print(horarios.get(i).getDataFormatada());
+//                        out.print("</td>");
+//                        out.print("<td>");
+//                        out.print(horarios.get(i).time);
+//                        out.print("</td>");
+//                        out.print("</tr>");
+//                        i++;
+//                    }
+
+                     while (i < horarios.size()) {
                         out.print("<tr>");
                         out.print("<td>");
                         out.print(horarios.get(i).getDataFormatada());
                         out.print("</td>");
                         out.print("<td>");
-                        out.print(horarios.get(i).time);
+                        while(i < horas.size()){
+                        out.print(horas.get(i).time);
                         out.print("</td>");
                         out.print("</tr>");
-
-      
-                        
                         
                         i++;
+                        }
                     }
+                   
+
+
                 %>
 
 
         </table>
 </body>
 </html>
+
+

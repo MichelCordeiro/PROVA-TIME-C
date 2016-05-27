@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +20,26 @@ import java.util.List;
  */
 public class AgendaDAO {
 
-    public static List<Horario> ConsultHour(Connection con) throws SQLException {
-        String sql = "SELECT * FROM horarios";
+//    public static List<Horario> ConsultHour(Connection con) throws SQLException {
+//        String sql = "SELECT * FROM horarios";
+//        //Prepara a instrução SQL
+//        PreparedStatement ps = con.prepareStatement(sql);
+//        //Executa a instrução SQL
+//        ResultSet rs = ps.executeQuery();
+//        List<Horario> horarios = new ArrayList<Horario>();
+//        Horario horarioA;
+//
+//        while (rs.next()) {
+//            horarioA = new Horario();
+//            horarioA.date = rs.getDate("hora");
+//            horarioA.time = rs.getTime("hora");
+//            horarios.add(horarioA);
+//        }
+//        return horarios;
+//    }
+    
+    public static List<Horario> ConsultHour(Connection con, Time t) throws SQLException {
+         String sql = "SELECT * FROM horarios WHERE Hora = '" + t.toString() + "'";
         //Prepara a instrução SQL
         PreparedStatement ps = con.prepareStatement(sql);
         //Executa a instrução SQL
@@ -30,30 +49,32 @@ public class AgendaDAO {
 
         while (rs.next()) {
             horarioA = new Horario();
-            horarioA.date = rs.getDate("hora");
-            horarioA.time = rs.getTime("hora");
+            horarioA.time = rs.getTime("Hora");
             horarios.add(horarioA);
         }
         return horarios;
     }
 
     public static List<Horario> ConsultByDate(Connection con, Date date) throws SQLException {
-        String sql = "SELECT * FROM horarios WHERE CAST(Hora AS DATE) = '" + date.toString() + "'";
+        //String sql = "SELECT * FROM horarios WHERE CAST(Hora AS DATE) = '" + date.toString() + "'";
+        String sql = "SELECT * FROM agendamento WHERE data = '" + date.toString() + "'";
         //Prepara a instrução SQL
         PreparedStatement ps = con.prepareStatement(sql);
         //Executa a instrução SQL
         ResultSet rs = ps.executeQuery();
+        
         List<Horario> horarios = new ArrayList<Horario>();
         Horario horarioA;
 
         while (rs.next()) {
             horarioA = new Horario();
-            horarioA.date = rs.getDate("hora");
-            horarioA.time = rs.getTime("hora");
+            horarioA.date = rs.getDate("data");
+            //horarioA.time = rs.getTime("hora");
             horarios.add(horarioA);
         }
         return horarios;
     }
+    
 
     public static boolean TryLogin(Connection con, Aluno aluno) throws SQLException {
 
@@ -71,4 +92,21 @@ public class AgendaDAO {
         }
         return false;
     }
+    
+//    public static String StatusHorario(Connection con, boolean status) throws SQLException{
+//        Horario horario = new Horario();
+//        String sql = "SELECT * FROM alunos WHERE status = '" + horario.status + "'; ";
+//        PreparedStatement ps = con.prepareStatement(sql);
+//        ResultSet rs = ps.executeQuery();
+//        
+//        while (rs.next()) {
+//            horario.status = rs.getBoolean("Status");
+//            
+//            if(horario.status) // horario disponivel
+//                out.print("asas");
+//            
+//            else       
+//           
+//        }    
+//    }
 }
