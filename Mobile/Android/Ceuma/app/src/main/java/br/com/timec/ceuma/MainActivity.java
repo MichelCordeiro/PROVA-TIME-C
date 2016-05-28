@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    TextView nomeLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         final int id = intent.getIntExtra("id", 0);
         String wsNome = intent.getStringExtra("nome");
 
-        nomeLogin = (TextView) findViewById(R.id.tvNomeLogin);
+        TextView nomeLogin = (TextView) findViewById(R.id.tvNomeLogin);
         nomeLogin.setText("Olá "+wsNome);
         //final int id = 1;
 
