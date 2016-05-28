@@ -75,9 +75,28 @@ public class AgendaDAO {
             horarioA = new Horario();
             horarioA.time = rs.getTime("hora");
             horarioA.setor = rs.getString("setor");
+            horarioA.id = rs.getString("id");
             horarios.add(horarioA);
         }
         return horarios;
+    }
+    public static boolean Reserve(Connection con, String id_horario, String id_aluno) throws SQLException {
+
+        String sql = "SELECT * FROM setores ; ";
+        //Prepara a instrução SQL
+        PreparedStatement ps = con.prepareStatement(sql);
+        //Executa a instrução SQL
+        ResultSet rs = ps.executeQuery();
+        List<Setor> setores;
+        setores = new ArrayList<Setor>();
+        Setor setorA;
+        while (rs.next()) {
+            setorA = new Setor();
+            setorA.nome = rs.getString("nome");
+            setorA.id = rs.getString("id");
+            setores.add(setorA);
+        }
+        return setores;
     }
      public static List<Setor> GetSectors(Connection con) throws SQLException {
 

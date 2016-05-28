@@ -1,13 +1,42 @@
 <html lang="en">
+    <%@page contentType="text/html" pageEncoding="UTF-8"%>
+    <%@page import="java.sql.Time"%>
+    <%@page import="java.sql.Date"%>
+    <%@page import="java.util.ArrayList"%>
+    <%@page import="java.util.List"%>
+    <%@page import="valeria.*"%>
+    <%@page import="java.sql.Connection"%>
     <head>
         <title>Agendar Horario</title>
 
         <!-- Bootstrap core CSS -->
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="bootstrap/signin.css" type="text/css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#ajaxform").submit(function () {
+                    $.ajax({
+                        url: $(this).attr('action'),
+                        type: $(this).attr('method'),
+                        data: $(this).serialize(),
+                        success: function (data) {
+                            $("#response").html(data);
+                        }
+                    });
+                    return false;
+                });
+
+            });
+            var reserva = function (obj)
+            {
+                alert("Button clicked, id " + obj.id + ", text" + this.innerHTML);
+            }
+        </script>
     </head>
 
     <body>
+
 
         <!-- Static navbar -->
         <nav class="navbar navbar-default navbar-static-top">
@@ -28,44 +57,49 @@
 
 
         <div class="container">
-            <form class="form-signin" action="consult.jsp" method="post">  
-                <h2 class="form-signin-heading"></h2>
-                Setor:
-                <%@page contentType="text/html" pageEncoding="UTF-8"%>
-                <%@page import="java.sql.Time"%>
-                <%@page import="java.sql.Date"%>
-                <%@page import="java.util.ArrayList"%>
-                <%@page import="java.util.List"%>
-                <%@page import="valeria.*"%>
-                <%@page import="java.sql.Connection"%>
+            <div class="row">
+                <form class="form-signin" action="consult.jsp" method="post" id = "ajaxform">  
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">setor</span>
+                        <select class="form-control" data-live-search="true" name = "setor_id">
+                            <%
+                                Connection con = ConnectionFactory.createConnection();
+                                List<Setor> setores = new ArrayList<Setor>();
+                                setores = AgendaDAO.GetSectors(con);
 
-                Setor: 
-                <select class="selectpicker" data-live-search="true" name = "setor_id">
-                    <%
-                        Connection con = ConnectionFactory.createConnection();
-                        List<Setor> setores = new ArrayList<Setor>();
-                        setores = AgendaDAO.GetSectors(con);
+                                int i = 0;
 
-                        int i = 0;
+                                while (i < setores.size()) {
+                                    out.print("<option value = '" + setores.get(i).id + "'>");
+                                    out.print(setores.get(i).nome);
+                                    out.print("</option>");
 
-                        while (i < setores.size()) {
-                            out.print("<option value = '" + setores.get(i).id + "'>");
-                            out.print(setores.get(i).nome);
-                            out.print("</option>");
+                                    i++;
+                                }
 
-                            i++;
-                        }
+                            %>
+                        </select>  
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">data</span>
+                        <input type="date" name="data" class = "form-control">
+                    </div>
+                    <br>
+                    <input class = 'btn btn-lg btn-primary btn-block' type="submit" value="verificar" name="verificar" />
+                </form> 
+            </div>
+            <div class="row">
+                <div id="response"></div>
+            </div>
 
-                    %>
-                </select>  
-                Data:<input type="date" name="data">
-                <input type="submit" value="Escolher" name="Escolher" />
-            </form> 
         </div>
 
+    </div>
 
 
 
-    </body>
+
+</body>
 </html>
 

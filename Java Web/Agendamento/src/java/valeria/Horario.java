@@ -20,8 +20,9 @@ public class Horario {
     public Time time;
     public String aluno;
     public String setor;
-    public boolean status;
-    
+    public String id;
+
+
     public String getDataFormatada() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return sdf.format(date);
