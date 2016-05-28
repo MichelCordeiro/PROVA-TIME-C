@@ -12,11 +12,13 @@ package valeria;
  */
 public class Aluno {
     
-    public String email, password, id;    
-
-    public Aluno(String email, String password, String id) {
+    public String email, password, id, nome;    
+    public Aluno()
+    {
+    
+    }
+    public Aluno(String email, String password) {
         this.email = email;
         this.password = password;
-        this.id = id;
     }   
 }

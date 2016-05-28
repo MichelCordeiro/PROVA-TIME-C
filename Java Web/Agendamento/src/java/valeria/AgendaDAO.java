@@ -59,10 +59,10 @@ public class AgendaDAO {
 
     public static List<Horario> AvailableByDate(Connection con, Date date, String setor_id) throws SQLException {
         //String sql = "SELECT * FROM horarios WHERE CAST(Hora AS DATE) = '" + date.toString() + "'";
-        String sql = "SELECT * FROM horarios_disponiveis hd WHERE  hd.setor_id = "+ setor_id +" "
+        String sql = "SELECT * FROM horarios_disponiveis hd WHERE  hd.setor_id = " + setor_id + " "
                 + "AND id NOT IN (SELECT  "
-                + "setores_horarios_id  FROM alunos_agendados aa WHERE  aa.setor_id = "+ setor_id 
-                + " AND aa.Data = '"+date.toString()+"')";
+                + "setores_horarios_id  FROM alunos_agendados aa WHERE  aa.setor_id = " + setor_id
+                + " AND aa.Data = '" + date.toString() + "')";
         //Prepara a instrução SQL
         PreparedStatement ps = con.prepareStatement(sql);
         //Executa a instrução SQL
@@ -80,7 +80,18 @@ public class AgendaDAO {
         }
         return horarios;
     }
-    public static boolean Reserve(Connection con, String id_horario, String id_aluno) throws SQLException {
+
+    public static boolean Reserve(Connection con, String id_horario, String id_aluno, Date data) throws SQLException {
+
+        String sql = "INSERT INTO `bdagenda`.`agendamento` (`alunos_id`, `setores_horarios_id`, `data`) "
+                + "VALUES ('" + id_aluno + "', '" + id_horario + "', '" + data.toString() + "');";
+        //Prepara a instrução SQL
+        PreparedStatement ps = con.prepareStatement(sql);
+        //Executa a instrução SQL
+        return ps.execute(); //executa 
+    }
+
+    public static List<Setor> GetSectors(Connection con) throws SQLException {
 
         String sql = "SELECT * FROM setores ; ";
         //Prepara a instrução SQL
@@ -98,24 +109,7 @@ public class AgendaDAO {
         }
         return setores;
     }
-     public static List<Setor> GetSectors(Connection con) throws SQLException {
 
-        String sql = "SELECT * FROM setores ; ";
-        //Prepara a instrução SQL
-        PreparedStatement ps = con.prepareStatement(sql);
-        //Executa a instrução SQL
-        ResultSet rs = ps.executeQuery();
-        List<Setor> setores;
-        setores = new ArrayList<Setor>();
-        Setor setorA;
-        while (rs.next()) {
-            setorA = new Setor();
-            setorA.nome = rs.getString("nome");
-            setorA.id = rs.getString("id");
-            setores.add(setorA);
-        }
-        return setores;
-    }
     public static boolean TryLogin(Connection con, Aluno aluno) throws SQLException {
 
         String sql = "SELECT * FROM alunos WHERE Email = '" + aluno.email + "'and Senha = '" + aluno.password + "'; ";
@@ -125,8 +119,8 @@ public class AgendaDAO {
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            aluno.email = rs.getString("Email");
-            aluno.password = rs.getString("Senha");
+            aluno.id = rs.getString("id");
+            aluno.nome = rs.getString("Nome");
 
             return true;
         }

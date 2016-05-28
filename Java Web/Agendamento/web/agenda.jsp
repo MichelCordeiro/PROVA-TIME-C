@@ -30,7 +30,17 @@
             });
             var reserva = function (obj)
             {
-                alert("Button clicked, id " + obj.id + ", text" + this.innerHTML);
+                alert("Button clicked, horario_id " + obj.id + ", aluno_id : <%= (String)session.getAttribute("aluno_id") %> , data: " + $("#data").val());
+
+                $.post("reserva.jsp",
+                        {
+                            date: $("#data").val(),
+                            aluno_id: "<%= session.getAttribute("aluno_id") %>",
+                            horario_id: obj.id
+                        },
+                        function (data, status) {
+                            alert("Data: " + data + "\nStatus: " + status);
+                        });
             }
         </script>
     </head>
@@ -83,7 +93,7 @@
                     <br>
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">data</span>
-                        <input type="date" name="data" class = "form-control">
+                        <input type="date" name="data" id = "data" class = "form-control">
                     </div>
                     <br>
                     <input class = 'btn btn-lg btn-primary btn-block' type="submit" value="verificar" name="verificar" />
