@@ -37,12 +37,9 @@ public class AgendaDAO {
 //        }
 //        return horarios;
 //    }
-    
     public static List<Horario> ConsultHour(Connection con, Time t) throws SQLException {
-         String sql = "SELECT * FROM horarios WHERE Hora = '" + t.toString() + "'";
-        //Prepara a instrução SQL
+        String sql = "SELECT * FROM horarios WHERE Hora = '" + t.toString() + "'";
         PreparedStatement ps = con.prepareStatement(sql);
-        //Executa a instrução SQL
         ResultSet rs = ps.executeQuery();
         List<Horario> horarios = new ArrayList<Horario>();
         Horario horarioA;
@@ -57,19 +54,21 @@ public class AgendaDAO {
 
     public static List<Horario> ConsultByDate(Connection con, Date date) throws SQLException {
         //String sql = "SELECT * FROM horarios WHERE CAST(Hora AS DATE) = '" + date.toString() + "'";
-        String sql = "SELECT * FROM agendamento WHERE data = '" + date.toString() + "'";
+        String sql = "SELECT *  FROM alunos_agendados WHERE Data = '" + date.toString() + "'";
         //Prepara a instrução SQL
         PreparedStatement ps = con.prepareStatement(sql);
         //Executa a instrução SQL
         ResultSet rs = ps.executeQuery();
-        
+
         List<Horario> horarios = new ArrayList<Horario>();
         Horario horarioA;
 
         while (rs.next()) {
             horarioA = new Horario();
-            horarioA.date = rs.getDate("data");
-            //horarioA.time = rs.getTime("hora");
+            horarioA.date = rs.getDate("Data");
+            horarioA.time = rs.getTime("Hora");
+            horarioA.setor = rs.getString("Setor");
+            horarioA.aluno = rs.getString("Aluno");
             horarios.add(horarioA);
         }
         return horarios;
@@ -92,7 +91,7 @@ public class AgendaDAO {
         }
         return false;
     }
-    
+
 //    public static String StatusHorario(Connection con, boolean status) throws SQLException{
 //        Horario horario = new Horario();
 //        String sql = "SELECT * FROM alunos WHERE status = '" + horario.status + "'; ";

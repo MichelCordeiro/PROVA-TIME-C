@@ -3,6 +3,7 @@ package valeria;
 import java.sql.Date;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,15 +15,15 @@ import java.text.SimpleDateFormat;
  * @author Valéria
  */
 public class Horario {
-    
+
     public Date date;
     public Time time;
+    public String aluno;
+    public String setor;
     public boolean status;
-    public String getDataFormatada() {        
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");        
-        return sdf.format(date);        
-    }    
     
-
-
+    public String getDataFormatada() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(date);
+    }
 }
