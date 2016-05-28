@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
             final Util util = new Util();
 
             final String url = util.genereteUrl(tvEmail.getText().toString(), edSenha.getText().toString());
-            final ProgressDialog progress = ProgressDialog.show(this, "Busca no Servidor Remoto", "Aguarde...");
+            final ProgressDialog progress = ProgressDialog.show(this, getString(R.string.servidor), getString(R.string.aguarde));
 
             new Thread(new Runnable() {
                 @Override
@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
                      final String json =  util.WebService(url);
 
                         if(json.equals("null")){
-                            throw new Exception("Não foi possovel realizar o login");
+                            throw new Exception(getString(R.string.error));
                         }
 
                         runOnUiThread(new Runnable() {
@@ -60,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                         });
 
                     } catch (Exception e){
+                        edSenha.setText("");
                         e.printStackTrace();
                     }finally {
                         progress.dismiss();
@@ -68,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
             }).start();
 
         } catch (Exception e) {
+            edSenha.setText("");
             Log.i("ERROR", e.getMessage());
         }
 

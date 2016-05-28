@@ -1,5 +1,6 @@
 package br.com.timec.ceuma;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,10 +19,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
- //       WebServiceExecute ws = new WebServiceExecute("Agendamento");
-//        ws.setId("1");
-//        ws.execute();
+        Intent intent = getIntent();
+        final int id = intent.getIntExtra("id", 0);
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Util util = new Util();
+                    String url = util.genereteUrl(id);
+                    final String json =  util.WebService(url);
+
+                    if(json.equals("null")){
+                        throw new Exception(getString(R.string.error));
+                    }
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                        }
+                    });
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     /*private void getAgendamento(String json) {
