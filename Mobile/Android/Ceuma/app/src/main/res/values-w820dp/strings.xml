@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="servidor">Busca no Servidor Remoto</string>
+    <string name="aguarde">Aguarde...</string>
+    <string name="error">Erro ao buscar informações no servidor</string>
+</resources>
