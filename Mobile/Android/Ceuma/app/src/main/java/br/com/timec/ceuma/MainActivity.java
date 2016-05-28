@@ -21,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
-        final int id = intent.getIntExtra("id", 0);
+        // final int id = intent.getIntExtra("id", 0);
+         final int id = 1;
 
         new Thread(new Runnable() {
             @Override
