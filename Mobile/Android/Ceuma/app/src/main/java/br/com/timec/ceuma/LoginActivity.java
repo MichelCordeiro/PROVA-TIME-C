@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
 
             if (ws.getId() == null) {
                 Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra("id", ws.getId().toString());
+                intent.putExtra("id", ws.getId());
                 startActivity(intent);
             } else {
                 edSenha.setText("");
