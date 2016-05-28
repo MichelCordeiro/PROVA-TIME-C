@@ -4,7 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,15 +18,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+    TextView nomeLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
-        // final int id = intent.getIntExtra("id", 0);
-         final int id = 1;
+        final int id = intent.getIntExtra("id", 0);
+        String wsNome = intent.getStringExtra("nome");
+
+        nomeLogin = (TextView) findViewById(R.id.tvNomeLogin);
+        nomeLogin.setText("Olá "+wsNome);
+        //final int id = 1;
 
         new Thread(new Runnable() {
             @Override
@@ -72,5 +80,28 @@ public class MainActivity extends AppCompatActivity {
             Log.e("Erro", "Erro no parsing do JSON", e);
             return null;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = new MenuInflater(MainActivity.this);
+        menuInflater.inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuSair:
+                logout();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void logout(){
+        Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+        startActivity(intent);
     }
 }
