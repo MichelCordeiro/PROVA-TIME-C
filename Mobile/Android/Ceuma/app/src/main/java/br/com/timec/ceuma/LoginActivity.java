@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
             tvEmail = (MultiAutoCompleteTextView) findViewById(R.id.email);
             edSenha = (EditText) findViewById(R.id.password);
 
-            WebServiceExecute ws = new WebServiceExecute("login");
+             WebServiceExecute ws = new WebServiceExecute("login");
 
             ws.setEmail(tvEmail.getText().toString());
             ws.setSenha(edSenha.getText().toString());
@@ -34,13 +34,15 @@ public class LoginActivity extends AppCompatActivity {
             ws.setContext(this);
             ws.execute();
 
-            if (ws.getId() == null) {
+            if (ws.getId() != null) {
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.putExtra("id", ws.getId());
+                intent.putExtra("nome", ws.getNome());
                 startActivity(intent);
             } else {
+                tvEmail.setText("");
                 edSenha.setText("");
-                Log.i("ERRO-LOGIN", "Exibir uma mensagem de erro");
+                Log.i("ERRO-LOGIN", "Exibir uma mensagem de erro:" + ws.getId());
             }
         } catch (Exception e) {
             Log.i("ERROR", e.getMessage());

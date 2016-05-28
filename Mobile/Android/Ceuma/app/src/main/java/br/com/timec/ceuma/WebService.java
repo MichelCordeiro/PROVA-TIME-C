@@ -1,8 +1,6 @@
 package br.com.timec.ceuma;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.text.Editable;
 
 import java.util.List;
 
@@ -13,6 +11,7 @@ public class WebService {
 
 
     private Integer id;
+    private String nome;
     private Context context;
     private String titulo;
     private String mensagem;
@@ -26,6 +25,14 @@ public class WebService {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Context getContext() {

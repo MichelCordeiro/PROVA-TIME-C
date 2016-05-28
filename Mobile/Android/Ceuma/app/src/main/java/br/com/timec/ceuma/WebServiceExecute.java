@@ -57,6 +57,7 @@ public class WebServiceExecute extends WebService {
                 agendmento = new JSONObject(agendmentosJson.getString(i));
 
                 Agendamento objAgendamento = new Agendamento();
+
                 objAgendamento.setAluno(agendmento.getString("Aluno"));
                 objAgendamento.setData(agendmento.getString("Data"));
                 objAgendamento.setHora(agendmento.getString("Hora"));
@@ -76,8 +77,11 @@ public class WebServiceExecute extends WebService {
     private void getLogin(String json) {
 
         try {
-                JSONObject obj = new JSONObject(json);
-                this.setId(obj.getInt("Id"));
+            JSONObject obj = new JSONObject(json);
+            this.setId(obj.getInt("Id"));
+            this.setNome(obj.getString("Nome"));
+            int a = this.getId();
+            Log.i("JSON", "" + a);
 
         } catch (JSONException e) {
             Log.e("Erro", "Erro no parsing do JSON", e);
@@ -133,7 +137,7 @@ public class WebServiceExecute extends WebService {
                     HttpEntity entity = response.getEntity();
 
                     InputStream instream = entity.getContent();
-                    String json = getStringFromInputStream(instream);
+                    final String json = getStringFromInputStream(instream);
                     instream.close();
 
                     if (json.equals("null")) {
