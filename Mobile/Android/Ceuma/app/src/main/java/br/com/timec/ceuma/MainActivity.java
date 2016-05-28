@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,51 +29,47 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     Util util = new Util();
                     String url = util.genereteUrl(id);
-                    final String json =  util.WebService(url);
+                    final String json = util.WebService(url);
 
-                    if(json.equals("null")){
+                    if (json.equals("null")) {
                         throw new Exception(getString(R.string.error));
                     }
+                    ArrayList<Agendamento> arrayOfAgendamento = getAgendamentos(json);
+                    final AgendamentosAdapter adapter = new AgendamentosAdapter(MainActivity.this, arrayOfAgendamento);
 
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-
+                            ListView listView = (ListView) findViewById(R.id.listView);
+                            listView.setAdapter(adapter);
                         }
                     });
-                } catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }).start();
     }
 
-    /*private void getAgendamento(String json) {
-
-        List<Agendamento> agendamentos = new ArrayList<Agendamento>();
-
+    private ArrayList<Agendamento> getAgendamentos(String json) {
         try {
+            ArrayList<Agendamento> agendamentos = new ArrayList<Agendamento>();
             JSONArray agendmentosJson = new JSONArray(json);
             JSONObject agendmento;
 
             for (int i = 0; i < agendmentosJson.length(); i++) {
                 agendmento = new JSONObject(agendmentosJson.getString(i));
-
-                Agendamento objAgendamento = new Agendamento();
-
-                objAgendamento.setAluno(agendmento.getString("Aluno"));
-                objAgendamento.setData(agendmento.getString("Data"));
-                objAgendamento.setHora(agendmento.getString("Hora"));
-                objAgendamento.setSetor(agendmento.getString("Setor"));
-
-                agendamentos.add(objAgendamento);
+                agendamentos.add(new Agendamento(agendmento.getString("Aluno"),
+                        agendmento.getString("Data"),
+                        agendmento.getString("Hora"),
+                        agendmento.getString("Setor")));
             }
 
-            this.setAgendamentos(agendamentos);
+            return agendamentos;
 
         } catch (JSONException e) {
             Log.e("Erro", "Erro no parsing do JSON", e);
+            return null;
         }
-        return;
-    }*/
+    }
 }
