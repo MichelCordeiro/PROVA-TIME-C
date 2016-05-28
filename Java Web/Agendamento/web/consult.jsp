@@ -38,7 +38,6 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Aluno</th>
                     <th>Setor</th>
                     <th>Data</th>
                     <th>Hora</th>    
@@ -50,19 +49,14 @@
                 <%
                     Connection con = ConnectionFactory.createConnection();
                     List<Horario> horarios = new ArrayList<Horario>();
-                    horarios = AgendaDAO.ConsultByDate(con, Date.valueOf(request.getParameter("data")));
+                    horarios = AgendaDAO.AvailableByDate(con, Date.valueOf(request.getParameter("data")), request.getParameter("setor_id"));
 
                     int i = 0;
 
                     while (i < horarios.size()) {
                         out.print("<tr>");
                         out.print("<td>");
-                        out.print(horarios.get(i).aluno);
-                        out.print("<td>");
                         out.print(horarios.get(i).setor);
-                        out.print("</td>");
-                        out.print("<td>");
-                        out.print(horarios.get(i).getDataFormatada());
                         out.print("</td>");
                         out.print("<td>");
                         out.print(horarios.get(i).time);
