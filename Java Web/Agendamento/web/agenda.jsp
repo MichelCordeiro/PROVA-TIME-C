@@ -11,9 +11,10 @@
 
         <!-- Bootstrap core CSS -->
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="bootstrap/signin.css" type="text/css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script>
+
+
             $(document).ready(function () {
                 $("#ajaxform").submit(function () {
                     $.ajax({
@@ -30,45 +31,49 @@
             });
             var reserva = function (obj)
             {
-                alert("Button clicked, horario_id " + obj.id + ", aluno_id : <%= (String)session.getAttribute("aluno_id") %> , data: " + $("#data").val());
-
                 $.post("reserva.jsp",
                         {
                             date: $("#data").val(),
-                            aluno_id: "<%= session.getAttribute("aluno_id") %>",
+                            aluno_id: "<%= session.getAttribute("aluno_id")%>",
                             horario_id: obj.id
                         },
                         function (data, status) {
-                            alert("Data: " + data + "\nStatus: " + status);
+                            if (status)
+                            {
+                                alert("Reservado com sucesso!");
+                                $("#ajaxform").submit();
+                            }
                         });
             }
         </script>
-    </head>
-
-    <body>
-
-
         <!-- Static navbar -->
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li class="active"><a href="agenda.html">Agenda</a></li>
-                        <li><a href="sair.html">Sair</a></li>
-                    </ul>
-                </div><!--/.nav-collapse -->
-            </div>
-        </nav>
-
-
-
-
-
-
+    <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
-            <div class="row">
-                <form class="form-signin" action="consult.jsp" method="post" id = "ajaxform">  
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="agendaAluno.jsp">Agenda</a></li>
+                    <li class="active"><a href="#">Reserva</a></li>
+                    <li><a href="logout.jsp">Sair</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <form action="consult.jsp" method="post" id = "ajaxform">  
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">setor</span>
                         <select class="form-control" data-live-search="true" name = "setor_id">
@@ -99,13 +104,19 @@
                     <input class = 'btn btn-lg btn-primary btn-block' type="submit" value="verificar" name="verificar" />
                 </form> 
             </div>
-            <div class="row">
-                <div id="response"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="table-responsive" id="response">
+
+
+                </div>
             </div>
 
         </div>
-
     </div>
+
+</div>
 
 
 

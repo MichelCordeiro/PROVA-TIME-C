@@ -14,40 +14,38 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<div class="container">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Hora</th>    
-                <th>#</th>
-            </tr>
-        </thead>
-        <tbody>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Hora</th>    
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
 
-            <%
-                Connection con = ConnectionFactory.createConnection();
-                List<Horario> horarios = new ArrayList<Horario>();
-                horarios = AgendaDAO.AvailableByDate(con, Date.valueOf(request.getParameter("data")), request.getParameter("setor_id"));
+        <%
+            Connection con = ConnectionFactory.createConnection();
+            List<Horario> horarios = new ArrayList<Horario>();
+            horarios = AgendaDAO.AvailableByDate(con, Date.valueOf(request.getParameter("data")), request.getParameter("setor_id"));
 
-                int i = 0;
+            int i = 0;
 
-                while (i < horarios.size()) {
-                    out.print("<tr>");
-                    out.print("<td>");
-                    out.print(horarios.get(i).time);
-                    out.print("</td>");
-                    out.print("<td><input id = ' "+horarios.get(i).id + "'"
-                            + " onclick = 'reserva(this)' class='btn btn-lg btn-primary btn-block' value='reservar' name='reservar' /></td>");
-                    out.print("</tr>");
+            while (i < horarios.size()) {
+                out.print("<tr>");
+                out.print("<td>");
+                out.print(horarios.get(i).time);
+                out.print("</td>");
+                out.print("<td><input id = ' " + horarios.get(i).id + "'"
+                        + " onclick = 'reserva(this)' class='btn btn-md btn-success btn-block' value='reservar' name='reservar' /></td>");
+                out.print("</tr>");
 
-                    i++;
-                }
-
-
-            %>
+                i++;
+            }
 
 
-    </table>
-</div>
+        %>
+
+
+</table>
 
 

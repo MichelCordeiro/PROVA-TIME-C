@@ -57,6 +57,28 @@ public class AgendaDAO {
         return horarios;
     }
 
+    public static List<Horario> ConsultByAluno(Connection con, String aluno_id) throws SQLException {
+        //String sql = "SELECT * FROM horarios WHERE CAST(Hora AS DATE) = '" + date.toString() + "'";
+        String sql = "SELECT *  FROM alunos_agendados WHERE id = " + aluno_id + " ORDER BY Setor ASC, Data ASC, Hora ASC ";
+        //Prepara a instrução SQL
+        PreparedStatement ps = con.prepareStatement(sql);
+        //Executa a instrução SQL
+        ResultSet rs = ps.executeQuery();
+
+        List<Horario> horarios = new ArrayList<Horario>();
+        Horario horarioA;
+
+        while (rs.next()) {
+            horarioA = new Horario();
+            horarioA.date = rs.getDate("Data");
+            horarioA.time = rs.getTime("Hora");
+            horarioA.setor = rs.getString("Setor");
+            horarioA.aluno = rs.getString("Aluno");
+            horarios.add(horarioA);
+        }
+        return horarios;
+    }
+
     public static List<Horario> AvailableByDate(Connection con, Date date, String setor_id) throws SQLException {
         //String sql = "SELECT * FROM horarios WHERE CAST(Hora AS DATE) = '" + date.toString() + "'";
         String sql = "SELECT * FROM horarios_disponiveis hd WHERE  hd.setor_id = " + setor_id + " "
@@ -120,7 +142,7 @@ public class AgendaDAO {
 
         while (rs.next()) {
             aluno.id = rs.getString("id");
-            aluno.nome = rs.getString("Nome");
+            aluno.nome = rs.getString("nome");
 
             return true;
         }
