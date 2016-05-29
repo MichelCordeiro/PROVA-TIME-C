@@ -31,9 +31,9 @@ public class AgendamentosAdapter extends ArrayAdapter<Agendamento> {
         TextView tvHora = (TextView) convertView.findViewById(R.id.hora);
 
         // Populate the data into the template view using the data object
-        tvSetor.setText(agendamento.setor);
-        tvData.setText(agendamento.data);
-        tvHora.setText(agendamento.hora);
+        tvSetor.setText("Setor: "+agendamento.setor);
+        tvData.setText("Data: " + agendamento.data);
+        tvHora.setText("Horário: "+agendamento.hora);
         // Return the completed view to render on screen
         return convertView;
     }
