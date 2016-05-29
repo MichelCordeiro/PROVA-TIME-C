@@ -19,15 +19,13 @@
                     setores = AgendaDAO.GetSectors(con);
 
                     int i = 0;
-                
+                  
                     while (i < setores.size()) {
-                        out.print("<option value = '" + setores.get(i).id + "'>");
+                        out.print("<option value = '" + setores.get(i).id + "'>");   // Lista de opções dos setores 
                         out.print(setores.get(i).nome);
-                        out.print("</option>");
-                        
+                        out.print("</option>");                       
 
                         i++;
                     }
-
 %>
 </select>  

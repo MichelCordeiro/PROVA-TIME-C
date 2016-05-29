@@ -12,6 +12,7 @@ import java.sql.SQLException;
  *
  * @author Valéria
  */
+// Cria conexão com o banco
 public class ConnectionFactory {
 
 	public static java.sql.Connection createConnection() throws SQLException{

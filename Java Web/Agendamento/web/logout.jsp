@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-    session.setAttribute("aluno_nome","" );
+    session.setAttribute("aluno_nome", "");
     session.setAttribute("aluno_id", "");
     response.sendRedirect("index.html");
 %>

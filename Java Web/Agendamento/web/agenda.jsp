@@ -14,7 +14,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script>
 
-
+            
             $(document).ready(function () {
                 $("#ajaxform").submit(function () {
                     $.ajax({
@@ -29,6 +29,7 @@
                 });
 
             });
+            
             var reserva = function (obj)
             {
                 $.post("reserva.jsp",
@@ -61,14 +62,6 @@
 </head>
 
 <body>
-
-
-
-
-
-
-
-
 
     <div class="container">
         <div class="row">
@@ -109,17 +102,11 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="table-responsive" id="response">
 
-
                 </div>
             </div>
-
         </div>
     </div>
-
 </div>
-
-
-
 
 </body>
 </html>
