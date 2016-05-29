@@ -1,8 +1,8 @@
 package br.com.timec.ceuma;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,8 +14,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -68,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
             for (int i = 0; i < agendmentosJson.length(); i++) {
                 agendmento = new JSONObject(agendmentosJson.getString(i));
+
                 agendamentos.add(new Agendamento(agendmento.getString("Aluno"),
                         agendmento.getString("Data"),
                         agendmento.getString("Hora"),
