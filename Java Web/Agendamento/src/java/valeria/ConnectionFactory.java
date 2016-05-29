@@ -15,7 +15,8 @@ import java.sql.SQLException;
 // Cria conexão com o banco
 public class ConnectionFactory {
 
-	public static java.sql.Connection createConnection() throws SQLException{
+	public static java.sql.Connection createConnection() throws SQLException, ClassNotFoundException{
+                Class.forName("com.mysql.jdbc.Driver"); // essa linha pode resolver o problema
 		String url = "jdbc:mysql://localhost:3306/bdagenda"; //Nome da base de dados
 		String user = "root"; //nome do usuário do MySQL
 		String password = "7410"; //senha do MySQL
