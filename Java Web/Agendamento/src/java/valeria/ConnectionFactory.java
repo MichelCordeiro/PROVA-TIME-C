@@ -17,7 +17,7 @@ public class ConnectionFactory {
 	public static java.sql.Connection createConnection() throws SQLException{
 		String url = "jdbc:mysql://localhost:3306/bdagenda"; //Nome da base de dados
 		String user = "root"; //nome do usuário do MySQL
-		String password = "root"; //senha do MySQL
+		String password = "7410"; //senha do MySQL
 		
 		java.sql.Connection conexao = null;
 		conexao = DriverManager.getConnection(url, user, password);
