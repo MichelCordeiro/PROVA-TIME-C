@@ -26,11 +26,11 @@ class ControlLogin {
     private function showDataForm() {
 
         if (!$this->objAlunos->selectOne()) {
-            $this->json['id'] = false;
+            $this->json = null;
             return;
         }
 
-        $this->json['id'] = $this->objAlunos->getId();
+        $this->json['Id'] = $this->objAlunos->getId();
         $this->json['Nome'] = $this->objAlunos->getNome();
 
         return;

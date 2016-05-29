@@ -1,8 +1,32 @@
+/*
+ * Autor: Bruno Amil;
+ */
+ 
+.font-thin {
+	font-family: "Titillium Web", sans-serif;
+	font-weight: 200;
+}
 
- /*CSS ainda em desenvolvimento
-	Por Bruno Amil - Prova C 
-  */
+.font-semibold {
+	font-family: "Titillium Web", sans-serif;
+	font-weight: 600;
+}
 
+.font-light {
+	font-family: "Titillium Web", sans-serif;
+	font-weight: 300;
+}
+
+* {
+	position: relative;
+}
+
+.breaker {
+	clear: both;
+	font-size: 1px;
+	line-height: 1px;
+	height: 1px;
+}
 
 html, body {
 	height: 100%;
@@ -21,11 +45,9 @@ body {
 	text-align: justify;
 }
 
- /* COLOR - MENU BARRA */
-
 .navbar {
-	background-color: #f4e6e5;
-	background-color: rgba( 205, 205, 205, .85 );
+	background-color: #e4e6e5;
+	background-color: rgba( 228, 230, 229, .85 );
 	border-bottom: 0 none;
 	font-size: 12px;
 	transition: .25s all linear;
@@ -111,7 +133,7 @@ body {
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-	#slide-4 .content-row h2 {
+	#--4 .content-row h2 {
 		min-height: 6em;
 	}
 }
@@ -164,7 +186,7 @@ body {
 	}
 	
 	.nav li[data-slide="4"] {
-		background-color: #34485e;
+		background-color: #34495e;
 	}
 	
 	.nav li[data-slide="5"] {
@@ -274,12 +296,9 @@ body {
 	}
 }
 
-/* SLIDE 2 - COLORS */
-
-
 #slide-2 {
-	background-color: #1874CD;
-	color: #e4e7e5;
+	background-color: #1abc9c;
+	color: #e4e6e5;
 	padding-top: 90px;
 }
 
@@ -362,15 +381,15 @@ body {
 	overflow: hidden;
 	padding: 0;
 	text-align: left;
-	width: 100%;
+	width: 130%;
 }
 	
 	#slide-3 .col-12 {
 		display: inline-block;
-		height: 451px;
+		height: 671px;
 		margin: 0;
 		padding: 0;
-		width: 452px;
+		width: 322px;
 	}
 
 	#slide-3 a,
@@ -407,7 +426,7 @@ body {
 	}
 }
 	
-@media (max-width: 767px) {
+@media (max-width: 667px) {
 	#slide-3 .col-12 {
 		width: 100%;
 	}
@@ -434,8 +453,8 @@ body {
 #slide-6 {
 	background-color: #2f2f2f;
 	color: #e4e6e5;
-	padding-bottom: 350px;
-	padding-top: 90px;
+	padding-bottom: 10px;
+	padding-top: 50px;
 }
 
 @media (max-width: 767px) {
