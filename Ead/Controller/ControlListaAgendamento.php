@@ -40,8 +40,8 @@ class ControlListaAgendamento {
 
         foreach ($aluno as $key => $value) {
             $this->json[$key]["Aluno"] = $value;
-            $this->json[$key]["Data"] = $data[$key];
-            $this->json[$key]["Hora"] = $hora[$key];
+            $this->json[$key]["Data"] = date("d/m/Y", strtotime($data[$key]));
+            $this->json[$key]["Hora"] = date("H:i", strtotime($hora[$key]));
             $this->json[$key]["Setor"] = $setor[$key];
         }
 

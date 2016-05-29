@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -19,22 +20,20 @@ public class AgendamentosAdapter extends ArrayAdapter<Agendamento> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // Get the data item for this position
+
         Agendamento agendamento = getItem(position);
-        // Check if an existing view is being reused, otherwise inflate the view
-        if (convertView == null) {
+
+        if (convertView == null)
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_itens, parent, false);
-        }
-        // Lookup view for data population
+
         TextView tvSetor = (TextView) convertView.findViewById(R.id.setor);
         TextView tvData = (TextView) convertView.findViewById(R.id.data);
         TextView tvHora = (TextView) convertView.findViewById(R.id.hora);
 
-        // Populate the data into the template view using the data object
-        tvSetor.setText(agendamento.setor);
-        tvData.setText(agendamento.data);
-        tvHora.setText(agendamento.hora);
-        // Return the completed view to render on screen
+        tvSetor.setText("Setor: "+ agendamento.setor);
+        tvData.setText("Data: " + agendamento.data);
+        tvHora.setText("Horário: "+ agendamento.hora);
+
         return convertView;
     }
 }
