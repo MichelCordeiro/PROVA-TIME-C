@@ -17,9 +17,9 @@
         Aluno aluno = new Aluno(request.getParameter("email"), request.getParameter("password"));
 
         if (AgendaDAO.TryLogin(con, aluno)) {
-            out.print(" <ins> Ficha do Aluno </ins>");
+         /* out.print(" <ins> Ficha do Aluno </ins>");
             out.print("Aluno: " + aluno.email + " ");
-            out.print("Email: " + aluno.email + " ");
+            out.print("Email: " + aluno.email + " ");*/
             session.setAttribute("aluno_nome", aluno.nome);
             session.setAttribute("aluno_id", aluno.id);
             response.sendRedirect("agendaAluno.jsp");

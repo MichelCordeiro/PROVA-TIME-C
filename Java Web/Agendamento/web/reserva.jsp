@@ -15,7 +15,7 @@
 <%
     Connection con = ConnectionFactory.createConnection();
     if (AgendaDAO.Reserve(con, request.getParameter("horario_id"), request.getParameter("aluno_id"), Date.valueOf(request.getParameter("date")))) {
-        out.print("SQL ERROR");
+        out.print("Reserva feita com sucesso!");
     }
     else
     {
