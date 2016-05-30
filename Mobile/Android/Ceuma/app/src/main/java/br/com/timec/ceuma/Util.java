@@ -27,7 +27,7 @@ import java.util.List;
 public class Util {
 
     private String tipo;
-    String url = "http://192.168.1.103/";
+    String url = "http://192.168.1.101/";
 
     public String genereteUrl(Integer id) {
         url += "ws-agendamento.php?id=" + id;
