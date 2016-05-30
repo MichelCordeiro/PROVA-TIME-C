@@ -19,7 +19,7 @@ import java.net.URI;
 public class Util {
 
     private String tipo;
-    String url = "http://128.0.8.155/";
+    String url = "http://192.168.1.102/";
 
     public String genereteUrl(Integer id) {
         url += "ws-agendamento.php?id=" + id;
